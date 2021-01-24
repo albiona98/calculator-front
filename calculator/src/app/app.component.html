@@ -1,0 +1,78 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+  <div>
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label translate> Emër </mat-label>
+        <input matInput type="text" name="name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label translate> Pozicioni i punës </mat-label>
+        <input matInput type="text" name="jobPosition" formControlName="jobPosition">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label translate>Paga </mat-label>
+        <input matInput type="text" name="salary" formControlName="salary">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label translate> Emër </mat-label>
+        <input matInput type="text" name="name" formControlName="name">
+      </mat-form-field>
+    </form>
+    <mat-table [hidden]="paginator.length === 0" mat-table matSort [dataSource]="(users | async)?.content">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Emër</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span style="white-space: normal;">{{element.name}} </span></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Mbiemër
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span style="white-space: normal;">{{element.lastName}} </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mobile">
+        <mat-header-cell *matHeaderCellDef> Nr Cel
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.mobile}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPosition">
+        <mat-header-cell *matHeaderCellDef>Pozicioni i Punës
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.jobPosition}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="salary">
+        <mat-header-cell *matHeaderCellDef> Paga </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.salary}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef> Adresa
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [style.visibility]="paginator.length === 0? 'hidden': 'visible'"
+      [hidden]="paginator.length === 0" [pageSizeOptions]="[10, 20, 50]">
+    </mat-paginator>
+  </div>
+
+<router-outlet></router-outlet>
